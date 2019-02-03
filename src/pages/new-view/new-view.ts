@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ModalController } from 'ionic-angular';
+import { SetCoordinatesPage } from '../set-coordinates/set-coordinates';
 
 @Component({
   selector: 'page-new-view',
@@ -12,7 +14,8 @@ export class NewViewPage implements OnInit {
   longitude: number;
   imageUrl: string;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+    private modalCtrl: ModalController) {
   }
 
   ngOnInit() {
@@ -25,6 +28,11 @@ export class NewViewPage implements OnInit {
       date: [new Date().toISOString(), Validators.required],
       description: ['']
     });
+  }
+
+  onOpenCoordsModal() {
+    let modal = this.modalCtrl.create(SetCoordinatesPage);
+    modal.present();
   }
 
 }

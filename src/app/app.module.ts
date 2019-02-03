@@ -10,6 +10,7 @@ import { SingleViewPage } from '../pages/single-view/single-view';
 import { NewViewPage } from '../pages/new-view/new-view';
 import { SetCoordinatesPage } from '../pages/set-coordinates/set-coordinates';
 import { NatureViewService } from '../services/natureView.service';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NatureViewService } from '../services/natureView.service';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyC4WUdadA81sIKbTf8qDWsY3MieJi1Id7U'})
   ],
   bootstrap: [IonicApp],
   entryComponents: [

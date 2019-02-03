@@ -1,25 +1,30 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, OnInit } from '@angular/core';
+import { ViewController } from 'ionic-angular';
 
-/**
- * Generated class for the SetCoordinatesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-@IonicPage()
 @Component({
   selector: 'page-set-coordinates',
   templateUrl: 'set-coordinates.html',
 })
-export class SetCoordinatesPage {
+export class SetCoordinatesPage implements OnInit {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  latitude: number;
+  longitude: number;
+  marker: {
+    latitude: number,
+    longitude: number,
+    draggable: true
+  };
+
+  constructor(private viewCtrl: ViewController) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SetCoordinatesPage');
+  ngOnInit() {
+    this.latitude = 57.28;
+    this.longitude = -2.58;
+  }
+
+  onCancel() {
+    this.viewCtrl.dismiss();
   }
 
 }
