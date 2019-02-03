@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ModalController } from 'ionic-angular';
+import { ModalController, Modal } from 'ionic-angular';
 import { SetCoordinatesPage } from '../set-coordinates/set-coordinates';
 
 @Component({
@@ -10,7 +10,7 @@ import { SetCoordinatesPage } from '../set-coordinates/set-coordinates';
 export class NewViewPage implements OnInit {
 
   natureViewForm: FormGroup;
-  latitute: number;
+  latitude: number;
   longitude: number;
   imageUrl: string;
 
@@ -31,8 +31,23 @@ export class NewViewPage implements OnInit {
   }
 
   onOpenCoordsModal() {
-    let modal = this.modalCtrl.create(SetCoordinatesPage);
+    let modal : Modal;
+    if (this.latitude) {
+      modal = this.modalCtrl.create(
+        SetCoordinatesPage,
+        {latitude: this.latitude, longitude: this.longitude});
+    } else {
+      modal = this.modalCtrl.create(SetCoordinatesPage);
+    }
     modal.present();
+    modal.onDidDismiss(
+      (data) => {
+        if (data) {
+          this.latitude = data.latitude;
+          this.longitude = data.longitude;
+        }
+      }
+    );
   }
 
 }
