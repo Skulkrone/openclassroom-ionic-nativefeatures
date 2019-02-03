@@ -32,6 +32,7 @@ export class NewViewPage implements OnInit {
 
   onOpenCoordsModal() {
     let modal : Modal;
+
     if (this.latitude) {
       modal = this.modalCtrl.create(
         SetCoordinatesPage,
@@ -39,6 +40,7 @@ export class NewViewPage implements OnInit {
     } else {
       modal = this.modalCtrl.create(SetCoordinatesPage);
     }
+    
     modal.present();
     modal.onDidDismiss(
       (data) => {

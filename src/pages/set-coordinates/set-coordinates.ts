@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ViewController, NavParams } from 'ionic-angular';
+import { LoadingController, NavParams, ToastController, ViewController } from 'ionic-angular';
+
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @Component({
   selector: 'page-set-coordinates',
@@ -16,8 +18,10 @@ export class SetCoordinatesPage implements OnInit {
   };
 
   constructor(private viewCtrl: ViewController,
-    private navParams: NavParams) {
-  }
+              private navParams: NavParams,
+              private geolocation: Geolocation,
+              private loadingCtrl: LoadingController,
+              private toastCtrl: ToastController) {}
 
   ngOnInit() {
     let receivedLatitude = this.navParams.get('latitude');
@@ -30,12 +34,10 @@ export class SetCoordinatesPage implements OnInit {
         longitude: receivedLongitude,
         draggable: true
       }
-    }
-    else {
+    } else {
       this.latitude = 57.28;
       this.longitude = -2.58;
     }
-    
   }
 
   onCancel() {
@@ -55,6 +57,33 @@ export class SetCoordinatesPage implements OnInit {
       longitude: $event.coords.lng,
       draggable: true
     };
-  } 
+  }
+
+  onLocateMe() {
+    let loader = this.loadingCtrl.create({
+      content: 'Recherche de votre position…'
+    });
+    loader.present();
+    this.geolocation.getCurrentPosition().then(
+      (resp) => {
+        loader.dismiss();
+        this.latitude = resp.coords.latitude;
+        this.longitude = resp.coords.longitude;
+        this.marker = {
+          latitude: resp.coords.latitude,
+          longitude: resp.coords.longitude,
+          draggable: true
+        }
+      }).catch(
+      (error) => {
+        loader.dismiss();
+        this.toastCtrl.create({
+          message: error,
+          duration: 3000,
+          position: 'bottom'
+        }).present();
+      }
+    );
+  }
 
 }
