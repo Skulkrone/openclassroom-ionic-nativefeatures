@@ -17,9 +17,9 @@
                 [markerDraggable]="marker.draggable"></agm-marker>
   </agm-map>
   <div text-center>
-<button ion-button round large icon-only (click)="onLocateMe()">
-    <ion-icon name="locate"></ion-icon>
-  </button>
+    <button ion-button round large icon-only (click)="onLocateMe()">
+      <ion-icon name="locate"></ion-icon>
+    </button>
   </div>
   <button ion-button full [disabled]="!marker" (click)="onSave()">Enregistrer</button>
 </ion-content>

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NatureView } from '../../models/NatureView.model';
 import { Subscription } from 'rxjs/Subscription';
 import { NatureViewService } from '../../services/natureView.service';
@@ -19,7 +19,7 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.natureViewListSubscription = this.natureViewService.natureViewList$.subscribe(
+    this.natureViewListSubscription = this.natureViewService.natureviewList$.subscribe(
       (natureViews: NatureView[]) => {
         this.natureViewList = natureViews;
       }

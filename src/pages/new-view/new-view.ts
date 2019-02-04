@@ -31,16 +31,17 @@ export class NewViewPage implements OnInit {
   }
 
   onOpenCoordsModal() {
-    let modal : Modal;
-
+    let modal: Modal;
     if (this.latitude) {
       modal = this.modalCtrl.create(
         SetCoordinatesPage,
-        {latitude: this.latitude, longitude: this.longitude});
+        {latitude: this.latitude, longitude: this.longitude}
+      );
     } else {
-      modal = this.modalCtrl.create(SetCoordinatesPage);
+      modal = this.modalCtrl.create(
+        SetCoordinatesPage
+      );
     }
-    
     modal.present();
     modal.onDidDismiss(
       (data) => {

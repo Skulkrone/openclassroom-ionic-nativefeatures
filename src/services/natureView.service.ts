@@ -1,16 +1,16 @@
-import { NatureView } from "../models/NatureView.model";
-import { Subject } from "rxjs/Subject";
+import { NatureView } from '../models/NatureView.model';
+import { Subject } from 'rxjs/Subject';
 
 export class NatureViewService {
-    private natureViewList: NatureView[] = [];
-    natureViewList$ = new Subject<NatureView[]>();
+  private natureViewList: NatureView[] = [];
+  natureviewList$ = new Subject<NatureView[]>();
 
-    emitList() {
-        this.natureViewList$.next(this.natureViewList);
-    }
+  emitList() {
+    this.natureviewList$.next(this.natureViewList);
+  }
 
-    addNatureViewList(view: NatureView) {
-        this.natureViewList.push(view);
-        this.emitList();
-    }
+  addNatureView(view: NatureView) {
+    this.natureViewList.push(view);
+    this.emitList();
+  }
 }

@@ -51,7 +51,7 @@ export class SetCoordinatesPage implements OnInit {
     });
   }
 
-  onMapClicked($event) {
+  onMapClicked($event: any) {
     this.marker = {
       latitude: $event.coords.lat,
       longitude: $event.coords.lng,
