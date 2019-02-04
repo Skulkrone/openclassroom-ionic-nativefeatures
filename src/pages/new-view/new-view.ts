@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ModalController, Modal, ToastController, NavController } from 'ionic-angular';
+import { ModalController, Modal, ToastController, NavController, normalizeURL } from 'ionic-angular';
 import { SetCoordinatesPage } from '../set-coordinates/set-coordinates';
 import { Camera } from '@ionic-native/camera/ngx';
-import { normalizeUrl } from 'ionic-angular/umd/navigation/deep-linker';
 import { NatureViewService } from '../../services/natureView.service';
 import { NatureView } from '../../models/NatureView.model';
 
@@ -69,7 +68,7 @@ export class NewViewPage implements OnInit {
       correctOrientation: true
     }).then(
       (data) => {
-        this.imageUrl = normalizeUrl(data);
+        this.imageUrl = normalizeURL(data);
       }
     ).catch(
       (error) => {
