@@ -12,6 +12,7 @@ import { SetCoordinatesPage } from '../pages/set-coordinates/set-coordinates';
 import { NatureViewService } from '../services/natureView.service';
 import { AgmCoreModule } from '@agm/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Camera } from '@ionic-native/camera/ngx';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
     SplashScreen,
     NatureViewService,
     Geolocation,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
